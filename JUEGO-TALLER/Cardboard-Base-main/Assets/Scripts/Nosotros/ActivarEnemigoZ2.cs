@@ -9,6 +9,10 @@ public class ActivarEnemigoZ2 : MonoBehaviour
     private GameObject enemigo2;
     private GameObject enemigo3;
     private GameObject enemigo4;
+    [SerializeField] AudioSource Zona1;
+    [SerializeField] AudioSource Zona2;
+    [SerializeField] AudioSource Puerta1;
+    [SerializeField] AudioSource Puerta2;
     int state = 0;
     float t = 0;
     // Start is called before the first frame update
@@ -29,6 +33,8 @@ public class ActivarEnemigoZ2 : MonoBehaviour
             Destroy(enemigo1);
             Destroy(enemigo2);
             Destroy(enemigo3);
+            Zona1.pitch = 1.0f;
+            
         }
         else if(state == 2)
         {
@@ -36,6 +42,9 @@ public class ActivarEnemigoZ2 : MonoBehaviour
             if(t >= 10)
             {
                 enemigo4.SetActive(true);
+                Zona1.volume = 0;
+                Zona2.volume = 1;
+                Puerta2.Play();
                 state = 3;
             }
             
@@ -48,6 +57,7 @@ public class ActivarEnemigoZ2 : MonoBehaviour
     {
         if (state == 0 && other.CompareTag("Player"))
         {
+            Puerta1.Play();
             state = 1;
         }
     }

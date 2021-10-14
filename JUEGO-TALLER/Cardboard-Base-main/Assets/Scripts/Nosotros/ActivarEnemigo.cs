@@ -8,6 +8,8 @@ public class ActivarEnemigo : MonoBehaviour
     private GameObject enemigo1;
     private GameObject enemigo2;
     private GameObject enemigo3;
+    [SerializeField] AudioSource Zona1;
+    [SerializeField] AudioSource Puerta;
     int state = 0;
     void Start()
     {
@@ -27,7 +29,10 @@ public class ActivarEnemigo : MonoBehaviour
             enemigo1.SetActive(true);
             enemigo2.SetActive(true);
             enemigo3.SetActive(true);
-            state = 0;
+            Zona1.pitch = 1.5f;
+            Puerta.Play();
+            state = 2;
+
         }
     }
     void OnTriggerExit(Collider other)
@@ -35,6 +40,7 @@ public class ActivarEnemigo : MonoBehaviour
         if (state == 0 && other.CompareTag("Player"))
         {
             state = 1;
+           
         }
     }
 
