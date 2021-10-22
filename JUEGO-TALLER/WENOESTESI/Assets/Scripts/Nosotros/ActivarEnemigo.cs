@@ -8,8 +8,10 @@ public class ActivarEnemigo : MonoBehaviour
     private GameObject enemigo1;
     private GameObject enemigo2;
     private GameObject enemigo3;
+    private GameObject door;
     [SerializeField] AudioSource Zona1;
     [SerializeField] AudioSource Puerta;
+    [SerializeField] Animator[] animator;
     int state = 0;
     void Start()
     {
@@ -19,6 +21,8 @@ public class ActivarEnemigo : MonoBehaviour
         enemigo2.SetActive(false);
         enemigo3 = GameObject.Find("Enemigo_3");
         enemigo3.SetActive(false);
+        door = GameObject.Find("DoorAnimada1");
+
     }
 
     // Update is called once per frame
@@ -30,7 +34,8 @@ public class ActivarEnemigo : MonoBehaviour
             enemigo2.SetActive(true);
             enemigo3.SetActive(true);
             Zona1.pitch = 1.5f;
-            Puerta.Play();
+            Animator doorAnimada1 = door.GetComponent<Animator>();
+            doorAnimada1.SetTrigger("open");
             state = 2;
 
         }

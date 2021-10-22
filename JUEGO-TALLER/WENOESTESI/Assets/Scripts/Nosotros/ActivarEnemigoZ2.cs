@@ -9,10 +9,12 @@ public class ActivarEnemigoZ2 : MonoBehaviour
     private GameObject enemigo2;
     private GameObject enemigo3;
     private GameObject enemigo4;
+    private GameObject door;
     [SerializeField] AudioSource Zona1;
     [SerializeField] AudioSource Zona2;
     [SerializeField] AudioSource Puerta1;
     [SerializeField] AudioSource Puerta2;
+    [SerializeField] Animator[] animator;
     int state = 0;
     float t = 0;
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class ActivarEnemigoZ2 : MonoBehaviour
         enemigo3 = GameObject.Find("Enemigo_3");
         enemigo4 = GameObject.Find("Enemigo_4");
         enemigo4.SetActive(false);
+        door = GameObject.Find("Wall_12_Door_01");
     }
 
     // Update is called once per frame
@@ -44,7 +47,8 @@ public class ActivarEnemigoZ2 : MonoBehaviour
                 enemigo4.SetActive(true);
                 Zona1.volume = 0;
                 Zona2.volume = 1;
-                Puerta2.Play();
+                Animator doorAnimada1 = door.GetComponent<Animator>();
+                doorAnimada1.SetTrigger("open");
                 state = 3;
             }
             
